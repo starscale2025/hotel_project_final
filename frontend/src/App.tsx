@@ -1,5 +1,3 @@
-
-
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 // Import all page components
@@ -10,7 +8,7 @@ import ExperiencesPage from './pages/Experiences';
 import DiningPage from './pages/Dining';
 import BookingPage from './pages/Booking';
 import ConfirmationPage from './pages/Confirmation';
-
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -36,6 +34,9 @@ function App() {
 
           {/* Dining Routes */}
           <Route path="/dining" element={<DiningPage />} />
+
+          {/* Dashboard */}
+          <Route path="/dashboard" element={<Dashboard />} />
 
 
           {/* 404 Not Found Route */}
