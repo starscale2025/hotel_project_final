@@ -89,7 +89,7 @@ export default function DiningPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[70vh] bg-taj-dark">
+      <section className="relative h-[60vh] md:h-[70vh] bg-taj-dark">
         <img
           src="/hero-rooftop.jpg"
           alt="Dining at TheHollyWood"
@@ -97,9 +97,9 @@ export default function DiningPage() {
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4">
-            <p className="text-xxl tracking-[0.3em] mb-4 text-taj-gold">CULINARY EXCELLENCE</p>
-            <h1 className="text-6xl md:text-7xl font-serif mb-6 tracking-wider text-white">DINING</h1>
-            <p className="text-lg tracking-wide max-w-2xl mx-auto font-sans font-light">
+            <p className="text-sm md:text-xxl tracking-[0.3em] mb-4 text-taj-gold">CULINARY EXCELLENCE</p>
+            <h1 className="text-4xl md:text-7xl font-serif mb-6 tracking-wider text-white">DINING</h1>
+            <p className="text-base md:text-lg tracking-wide max-w-2xl mx-auto font-sans font-light">
               Discover exceptional dining experiences from rooftop cocktails to authentic Asian cuisine
             </p>
           </div>
@@ -107,17 +107,17 @@ export default function DiningPage() {
       </section>
 
       {/* Quick Reservation Widget */}
-      <section className="bg-gray-50 py-12 -mt-20 relative z-10">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-white shadow-2xl p-8 rounded-lg">
-            <h3 className="text-2xl font-light text-center mb-6 tracking-wide">MAKE A RESERVATION</h3>
-            <div className="flex flex-wrap gap-4 items-end justify-center">
-              <div className="flex flex-col flex-1 min-w-[150px]">
+      <section className="bg-gray-50 py-12 -mt-20 relative z-10 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white shadow-2xl p-6 md:p-8 rounded-lg">
+            <h3 className="text-xl md:text-2xl font-light text-center mb-6 tracking-wide">MAKE A RESERVATION</h3>
+            <div className="flex flex-col md:flex-row flex-wrap gap-4 items-end justify-center">
+              <div className="flex flex-col w-full md:flex-1 min-w-[150px]">
                 <label className="text-xs tracking-widest text-gray-600 mb-2">RESTAURANT</label>
                 <select
                   value={selectedRestaurant}
                   onChange={(e) => setSelectedRestaurant(e.target.value)}
-                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900"
+                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900 w-full"
                 >
                   <option value="all">All Restaurants</option>
                   <option value="aer">AER Rooftop Bar</option>
@@ -126,12 +126,12 @@ export default function DiningPage() {
                   <option value="poolside">Poolside Dining</option>
                 </select>
               </div>
-              <div className="flex flex-col flex-1 min-w-[120px]">
+              <div className="flex flex-col w-full md:flex-1 min-w-[120px]">
                 <label className="text-xs tracking-widest text-gray-600 mb-2">PEOPLE</label>
                 <select
                   value={reservationData.people}
                   onChange={(e) => setReservationData({ ...reservationData, people: e.target.value })}
-                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900"
+                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900 w-full"
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -143,12 +143,12 @@ export default function DiningPage() {
                   <option value="8">8+</option>
                 </select>
               </div>
-              <div className="flex flex-col flex-1 min-w-[120px]">
+              <div className="flex flex-col w-full md:flex-1 min-w-[120px]">
                 <label className="text-xs tracking-widest text-gray-600 mb-2">TIME</label>
                 <select
                   value={reservationData.time}
                   onChange={(e) => setReservationData({ ...reservationData, time: e.target.value })}
-                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900"
+                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900 w-full"
                 >
                   <option value="12:00 PM">12:00 PM</option>
                   <option value="12:30 PM">12:30 PM</option>
@@ -161,18 +161,18 @@ export default function DiningPage() {
                   <option value="9:00 PM">9:00 PM</option>
                 </select>
               </div>
-              <div className="flex flex-col flex-1 min-w-[150px]">
+              <div className="flex flex-col w-full md:flex-1 min-w-[150px]">
                 <label className="text-xs tracking-widest text-gray-600 mb-2">DATE</label>
                 <input
                   type="text"
                   value={reservationData.date}
                   onChange={(e) => setReservationData({ ...reservationData, date: e.target.value })}
-                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900"
+                  className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-gray-900 w-full"
                 />
               </div>
               <button
                 onClick={handleReservation}
-                className="btn-gold h-[42px]"
+                className="btn-gold h-[42px] w-full md:w-auto"
               >
                 FIND A TABLE
               </button>
@@ -182,20 +182,20 @@ export default function DiningPage() {
       </section>
 
       {/* Restaurants Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h2 className="section-title">OUR RESTAURANTS</h2>
+            <h2 className="section-title text-3xl md:text-5xl">OUR RESTAURANTS</h2>
             <div className="w-24 h-1 bg-taj-gold mx-auto mb-6"></div>
-            <p className="text-taj-gray max-w-2xl mx-auto font-light">
+            <p className="text-taj-gray max-w-2xl mx-auto font-light text-sm md:text-base">
               From contemporary Asian cuisine to rooftop cocktails, each venue offers a unique culinary journey
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredRestaurants.map((restaurant) => (
               <div key={restaurant.id} className="bg-white shadow-lg overflow-hidden group cursor-pointer">
-                <div className="relative h-80 overflow-hidden">
+                <div className="relative h-64 md:h-80 overflow-hidden">
                   <img
                     src={restaurant.image}
                     alt={restaurant.name}
@@ -205,25 +205,25 @@ export default function DiningPage() {
                     {restaurant.category}
                   </div>
                 </div>
-                <div className="p-8">
+                <div className="p-6 md:p-8">
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-2xl font-light mb-2">{restaurant.name}</h3>
                       <p className="text-sm text-gray-600">{restaurant.cuisine} • {restaurant.priceRange}</p>
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4 leading-relaxed">{restaurant.description}</p>
+                  <p className="text-gray-700 mb-4 leading-relaxed text-sm md:text-base">{restaurant.description}</p>
                   <div className="flex items-center text-sm text-gray-600 mb-6">
                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {restaurant.hours}
                   </div>
-                  <div className="flex gap-3">
-                    <button className="flex-1 btn-gold">
+                  <div className="flex flex-col md:flex-row gap-3">
+                    <button className="flex-1 btn-gold w-full">
                       RESERVE NOW
                     </button>
-                    <button className="flex-1 border border-taj-dark text-taj-dark py-3 text-sm tracking-widest hover:bg-taj-dark hover:text-white transition uppercase font-medium">
+                    <button className="flex-1 border border-taj-dark text-taj-dark py-3 text-sm tracking-widest hover:bg-taj-dark hover:text-white transition uppercase font-medium w-full">
                       VIEW MENU
                     </button>
                   </div>
@@ -235,12 +235,12 @@ export default function DiningPage() {
       </section>
 
       {/* Dining Experiences */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="section-title">SPECIAL DINING EXPERIENCES</h2>
+      <section className="py-12 md:py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <h2 className="section-title text-2xl md:text-4xl">SPECIAL DINING EXPERIENCES</h2>
           <div className="w-24 h-1 bg-taj-gold mx-auto mb-12"></div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {diningExperiences.map((experience, idx) => (
               <div key={idx} className="bg-white shadow-md overflow-hidden group">
                 <div className="h-64 overflow-hidden">

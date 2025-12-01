@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import SmoothScroll from './components/SmoothScroll';
 
 // Import all page components
 import OverviewPage from './pages/Overview';
@@ -13,6 +14,7 @@ import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <Router>
+      <SmoothScroll />
       <div className="App">
         <Routes>
           {/* Home/Overview Route */}

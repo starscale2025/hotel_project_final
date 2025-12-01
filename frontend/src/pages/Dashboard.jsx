@@ -2,11 +2,19 @@ import { useEffect, useState } from 'react';
 
 const Dashboard = () => {
   const [bookings, setBookings] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
+    // Fetch bookings
     fetch("http://localhost:3000/dashboard")
       .then(res => res.json())
       .then(data => setBookings(data));
+
+    // Fetch current user
+    fetch("http://localhost:3000/auth/current_user")
+      .then(res => res.json())
+      .then(data => setUser(data))
+      .catch(err => console.error("Error fetching user:", err));
   }, []);
 
   const updateStatus = async (id, status) => {
@@ -24,7 +32,7 @@ const Dashboard = () => {
 
   return (
     <div className="p-10 text-white">
-      <h1 className="text-3xl mb-6 text-white">Hi Abhi👋</h1>
+      <h1 className="text-3xl mb-6 text-white">Hi {user ? user.displayName : 'Guest'}👋</h1>
 
       {bookings.map(b => (
         <div key={b._id} className="border p-4 rounded mb-4">

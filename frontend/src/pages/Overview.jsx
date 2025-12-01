@@ -92,7 +92,7 @@ export default function Overview() {
 
 
             {/* Minimal Description */}
-            <section className="bg-black py-32 px-6">
+            <section className="bg-black py-16 md:py-32 px-6">
               <div className="max-w-4xl mx-auto text-center">
                 <p className="text-white text-3xl md:text-4xl font-light leading-relaxed tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>
                   Chandigarh's chic open-air rooftop bar offers innovative cocktails and premier wine selections, with a scenic view of the bay.
@@ -105,7 +105,7 @@ export default function Overview() {
             </section>
 
             {/* Minimal Hours Section */}
-            <section id="hours" className="bg-black pb-32 px-6">
+            <section id="hours" className="bg-black pb-16 md:pb-32 px-6">
               <div className="max-w-2xl mx-auto">
                 <div className="text-center mb-16">
                   <span className="text-luxury-gold text-xs tracking-[0.3em] uppercase">Timings</span>
@@ -133,7 +133,7 @@ export default function Overview() {
             </section>
 
             {/* Minimal Menus Grid */}
-            <section id="menus" className="bg-black pb-32 px-6">
+            <section id="menus" className="bg-black pb-16 md:pb-32 px-6">
               <div className="max-w-6xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
                   <a href="#yacht" className="group relative bg-black p-16 flex flex-col items-center justify-center text-center hover:bg-white/5 transition-colors duration-500">
@@ -152,7 +152,7 @@ export default function Overview() {
             </section>
 
             {/* Minimal Events Section */}
-            <section id="events" className="bg-black pb-32 px-6">
+            <section id="events" className="bg-black pb-16 md:pb-32 px-6">
               <div className="max-w-4xl mx-auto text-center">
                 <span className="text-luxury-gold text-xs tracking-[0.3em] uppercase">Happenings</span>
                 <h2 className="text-white text-4xl mt-4 mb-12 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>Sunday Brunch</h2>
@@ -169,7 +169,7 @@ export default function Overview() {
             </section>
 
             {/* Minimal Reservation CTA */}
-            <section className="bg-black pb-32 px-6">
+            <section className="bg-black pb-16 md:pb-32 px-6">
               <div className="max-w-xl mx-auto text-center border-y border-white/10 py-16">
                 <p className="text-white text-2xl font-light mb-8" style={{ fontFamily: 'Playfair Display, serif' }}>Make a Reservation</p>
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8">
@@ -182,7 +182,7 @@ export default function Overview() {
             </section>
 
             {/* Minimal Dining Options */}
-            <section className="bg-black pb-32 px-6">
+            <section className="bg-black pb-16 md:pb-32 px-6">
               <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
                   <span className="text-luxury-gold text-xs tracking-[0.3em] uppercase">More Dining</span>
@@ -230,7 +230,7 @@ export default function Overview() {
             </section>
 
             {/* Minimal Footer */}
-            <footer className="bg-black text-white py-24 border-t border-white/10">
+            <footer className="bg-black text-white py-12 md:py-24 border-t border-white/10">
               <div className="max-w-7xl mx-auto px-6">
                 <div className="flex flex-col items-center text-center">
                   {/* Minimal Logo */}
