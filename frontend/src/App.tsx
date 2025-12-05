@@ -9,8 +9,8 @@ import ExperiencesPage from './pages/Experiences';
 import DiningPage from './pages/Dining';
 import Booking from './pages/Booking';
 import ConfirmationPage from './pages/Confirmation';
+import DashboardBookings from './pages/DashboardBookings';
 import Dashboard from './pages/Dashboard';
-
 function App() {
   return (
     <Router>
@@ -37,8 +37,10 @@ function App() {
           {/* Dining Routes */}
           <Route path="/dining" element={<DiningPage />} />
 
-          {/* Dashboard */}
+          {/* DashboardBookings */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/rooms" element={<DashboardBookings type="rooms" />} />
+          <Route path="/dashboard/tables" element={<DashboardBookings type="tables" />} />
 
 
           {/* 404 Not Found Route */}

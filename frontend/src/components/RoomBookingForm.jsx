@@ -14,7 +14,6 @@ export default function RoomBookingForm() {
         checkOutTime: '11:00',
         guests: '2',
         roomType: 'Deluxe Suite',
-        specialRequests: ''
     });
 
     const [duration, setDuration] = useState(0);

@@ -28,7 +28,7 @@ export default function TableBookingForm() {
 
         try {
             // Note: Adjust endpoint if needed for table bookings
-            const response = await fetch("http://localhost:3000/api/bookings", {
+            const response = await fetch("http://localhost:3000/api/table-booking", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
