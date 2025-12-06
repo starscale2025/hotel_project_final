@@ -11,6 +11,9 @@ import Booking from './pages/Booking';
 import ConfirmationPage from './pages/Confirmation';
 import DashboardBookings from './pages/DashboardBookings';
 import Dashboard from './pages/Dashboard';
+import BookingHistory from './pages/BookingHistory';
+
+
 function App() {
   return (
     <Router>
@@ -41,6 +44,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/rooms" element={<DashboardBookings type="rooms" />} />
           <Route path="/dashboard/tables" element={<DashboardBookings type="tables" />} />
+          <Route path="/dashboard/booking-history" element={<BookingHistory />} />
 
 
           {/* 404 Not Found Route */}

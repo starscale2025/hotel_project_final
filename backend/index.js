@@ -8,7 +8,10 @@ const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const userModel = require('./models/User')
 const bookingModel = require('./models/Booking')
-const tableModel = require('./models/Table')
+const tableModel = require('./models/Table');
+const path = require('path')
+const jwt = require('jsonwebtoken')
+const adminAuth = require("./middleware/adminAuth");
 
 connectDB();
 
@@ -17,60 +20,62 @@ app.use(cors({
   credentials: true
 }));
 
+app.set("view engine", "ejs")
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json());
 app.use(cookieParser());
 
 // routes
 app.use("/booking", require("./routes/booking"));
 
-app.get("/dashboard" , async (req , res) => {
+app.get("/admin/login", (req, res) => {
+  res.render("login")
+})
+
+app.post("/admin/login", (req, res) => {
+  const { username, password } = req.body;
+  console.log(username , password)
+
+  if (
+    username === process.env.ADMIN_USERNAME &&
+    password === process.env.ADMIN_PASSWORD
+  ) {
+    let token = jwt.sign({ username }, process.env.SECRET_KEY, {
+      expiresIn: "1d"
+    });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "lax"
+      // Change these when hosting
+      // secure: true,
+      // sameSite: "none"
+    });
+
+    // return res.json({ success: true });
+    return res.redirect("http://localhost:5173/dashboard")
+  }
+
+  res.status(401).json({ message: "Invalid username or password" });
+});
+
+
+app.get("/dashboard", adminAuth , async (req, res) => {
   res.send("HI THIS IS DASHBOARD")
   // let bookings = await bookingModel.find()
   // res.json(bookings)
 })
 
-app.get("/dashboard/rooms" , async (req , res) => {
+app.get("/dashboard/rooms", adminAuth , async (req, res) => {
   let bookings = await bookingModel.find()
   res.json(bookings)
 })
 
-app.get("/dashboard/tables" , async (req , res) => {
+app.get("/dashboard/tables", adminAuth , async (req, res) => {
   let reservations = await tableModel.find()
   res.json(reservations)
 })
-
-
-app.post("/api/auth/google", async (req, res) => {
-  try {
-    const { token } = req.body;
-
-    // Verify and decode the token
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: process.env.GOOGLE_CLIENT_ID
-    });
-
-    const payload = ticket.getPayload();  // decoded user data from Google
-
-    console.log("Decoded Google user:", payload);
-    // payload.given_name
-    // payload.name
-
-    let user = await userModel.findOne({email: payload.email})
-    if(!user){
-      userModel.create({
-        name: payload.given_name,
-        email: payload.email
-      })
-    }
-    
-    res.json({ success: true, user: payload });
-    
-  } catch (err) {
-    console.error("❌ Google token error:", err);
-    res.status(400).json({ success: false, message: "Invalid token" });
-  }
-});
 
 app.post("/api/bookings", async (req, res) => {
   try {

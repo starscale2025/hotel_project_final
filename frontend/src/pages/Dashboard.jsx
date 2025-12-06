@@ -18,11 +18,23 @@ const Dashboard = () => {
     }, []);
     console.log(roomsBooked , tablesBooked)
 
+    const today = new Date().toISOString().split("T")[0];
+
+    const todaysRooms = roomsBooked.filter(
+        (e) => e.checkInDate.split("T")[0] === today
+    );
+
+    const todaysTables = tablesBooked.filter(
+        (e) => e.date.split("T")[0] === today
+    );
+
+
   return (
     <div className="text-white p-10">
         <div className="text-white flex justify-between w-fit divide-x divide-gray-600 mb-5">
             <Link to="/dashboard/rooms" className="px-4">Rooms</Link>
             <Link to="/dashboard/tables" className="px-4">Tables</Link>
+            <Link to="/dashboard/booking-history" className="px-4">Booking History</Link>
         </div>
 
         <h1 className="text-3xl text-white mb-8">
@@ -34,7 +46,7 @@ const Dashboard = () => {
             <div className="bg--300 w-full p-3">
                 <h1 className='text-xl mb-6 text-luxury-gold'>Rooms Booked for Today</h1>
                 <div className='flex flex-col gap-4'>
-                    {roomsBooked.map((e) => (
+                    {todaysRooms.map((e) => (
                         <div key={e._id} className='w-full flex justify-between p-3 border-2 border-amber-50 rounded-md'>
                             <p>Room No</p>
                             <p>{e.firstName}</p>
@@ -50,7 +62,7 @@ const Dashboard = () => {
             <div className=" bg--500 w-full p-3">
                 <h1 className='text-xl mb-6 text-luxury-gold'>Rooms Booked for Today</h1>
                 <div className='flex flex-col gap-4'>
-                    {tablesBooked.map((e) => (
+                    {todaysTables.map((e) => (
                         <div key={e._id} className='w-full flex justify-between p-3 border-2 border-amber-50 rounded-md'>
                             <p>Room No</p>
                             <p>{e.firstName}</p>
