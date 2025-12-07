@@ -12,15 +12,28 @@ const tableModel = require('./models/Table');
 const path = require('path')
 const jwt = require('jsonwebtoken')
 const adminAuth = require("./middleware/adminAuth");
+const PORT = process.env.PORT || 5000;
 
 connectDB();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://hotelprojectfinal.vercel.app"
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // your frontend URL
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"], // allow Authorization header
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"] // explicitly allow OPTIONS for preflight
+  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 }));
+
 
 // app.use(cors({
 //   origin: "http://localhost:5173",
@@ -142,4 +155,4 @@ app.post("/api/table-booking", async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("🚀 Server running on port 3000"));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
