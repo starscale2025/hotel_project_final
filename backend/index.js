@@ -23,22 +23,25 @@ const allowedOrigins = [
   "https://hotel-project-final-murex.vercel.app",
 ];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
+// app.use((req, res, next) => {
+//   const origin = req.headers.origin;
 
-  if (origin && !allowedOrigins.includes(origin)) {
-    return res.status(403).send("Forbidden");
-  }
+//   if (origin && !allowedOrigins.includes(origin)) {
+//     return res.status(403).send("Forbidden");
+//   }
 
-  next();
-});
+//   next();
+// });
 
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
+  credentials: false
 }));
+
+app.options("*", cors());
+
 
 
 
