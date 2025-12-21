@@ -18,15 +18,15 @@ connectDB();
 
 
 
-app.use((req, res, next) => {
-  const allowed = [
-    "http://localhost:5173",
-    "https://hotel-project-final-murex.vercel.app",
-  ];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://hotel-project-final-murex.vercel.app",
+];
 
+app.use((req, res, next) => {
   const origin = req.headers.origin;
 
-  if (origin && !allowed.includes(origin)) {
+  if (origin && !allowedOrigins.includes(origin)) {
     return res.status(403).send("Forbidden");
   }
 
@@ -34,10 +34,11 @@ app.use((req, res, next) => {
 });
 
 app.use(cors({
-  origin: allowed,
+  origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
 
 
 app.set("view engine", "ejs")
