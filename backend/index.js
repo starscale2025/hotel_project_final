@@ -85,6 +85,46 @@ app.post("/admin/login", (req, res) => {
 });
 
 
+app.post("/api/auth/google", async (req, res) => {
+  try {
+    const { credential } = req.body;
+
+    if (!credential) {
+      return res.status(400).json({ message: "Missing credential" });
+    }
+
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const { email, name, sub, picture } = payload;
+
+    let user = await userModel.findOne({ email });
+
+    if (!user) {
+      user = await userModel.create({
+        email,
+        name,
+        googleId: sub,
+        avatar: picture,
+      });
+    }
+
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.SECRET_KEY,
+      { expiresIn: "7d" }
+    );
+
+    res.json({ success: true, token, user });
+  } catch (err) {
+    console.error("Google auth error:", err);
+    res.status(400).json({ message: "Google authentication failed" });
+  }
+});
+
 
 
 app.get("/dashboard", adminAuth , async (req, res) => {
