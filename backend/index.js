@@ -23,6 +23,9 @@ app.use(cors({
 }));
 app.options("*", cors());
 
+console.log("DEPLOY CHECK");
+
+
 // const corsOptions = {
 //   origin: (origin, callback) => {
 //     if (!origin) return callback(null, true);
