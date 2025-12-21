@@ -21,25 +21,20 @@ const handleSuccess = async (credentialResponse) => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ credential }), // ✅ correct key
+        body: JSON.stringify({ credential }),
       }
     );
 
-    if (!res.ok) {
-      const text = await res.text();
-      throw new Error(text);
-    }
+    if (!res.ok) throw new Error("Backend auth failed");
 
-    const data = await res.json();
-    console.log("Backend auth success:", data);
+    // ✅ trigger UI update instead of reload
+    setUser(user);
 
-    // Reload ONLY after success
-    window.location.reload();
-
-  } catch (err) {
-    console.error("Google login failed:", err);
+  } catch (e) {
+    console.error("Login flow failed:", e);
   }
 };
+
 
 
   
