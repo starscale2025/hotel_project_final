@@ -17,42 +17,28 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 
+
+app.use((req, res, next) => {
+  const allowed = [
+    "http://localhost:5173",
+    "https://hotel-project-final-murex.vercel.app",
+  ];
+
+  const origin = req.headers.origin;
+
+  if (origin && !allowed.includes(origin)) {
+    return res.status(403).send("Forbidden");
+  }
+
+  next();
+});
+
 app.use(cors({
-  origin: "*",
-  credentials: false
+  origin: allowed,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
-app.options("*", cors());
 
-console.log("DEPLOY CHECK");
-
-
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (!origin) return callback(null, true);
-
-//     if (
-//       origin === "http://localhost:5173" ||
-//       origin === "https://hotel-project-final-murex.vercel.app"
-//     ) {
-//       return callback(null, true);
-//     }
-
-//     return callback(null, false);
-//   },
-//   credentials: true,
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// };
-
-// app.use(cors(corsOptions));
-// app.options("*", cors(corsOptions));
-
-
-
-// app.use(cors({
-//   origin: "http://localhost:5173",
-//   credentials: true
-// }));
 
 app.set("view engine", "ejs")
 app.use(express.urlencoded({ extended: true }))
