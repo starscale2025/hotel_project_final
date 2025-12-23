@@ -23,21 +23,30 @@ const allowedOrigins = [
   "https://hotel-project-final-murex.vercel.app",
 ];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  if (origin && !allowedOrigins.includes(origin)) {
-    return res.status(403).send("Forbidden");
-  }
-
-  next();
-});
-
+// CORS configuration with proper origin function for credentials
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    // For requests with no origin (like mobile apps, Postman, or same-origin requests)
+    // Allow them but don't set Access-Control-Allow-Credentials
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    // Check if origin is in allowed list
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      // Return the origin string (required when credentials: true)
+      callback(null, origin);
+    } else {
+      // Log for debugging
+      console.log('CORS blocked origin:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  exposedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 }));
 
 
