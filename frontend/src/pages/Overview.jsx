@@ -84,145 +84,96 @@ export default function Overview() {
             <ParallaxHero
               backgroundImage="/hero-rooftop.jpg"
               title="Explore The Hollywood"
-              subtitle="Where skyline whispers meet curated cocktails. Chandigarh's elevated escape."
+              subtitle="Where skyline whispers meet curated cocktails. Punjab's elevated escape."
             >
               <BookingWidget />
             </ParallaxHero>
 
 
 
-            {/* Minimal Description */}
-            <section className="bg-black py-16 md:py-32 px-6">
-              <div className="max-w-4xl mx-auto text-center">
-                <p className="text-white text-3xl md:text-4xl font-light leading-relaxed tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  Chandigarh's chic open-air rooftop bar offers innovative cocktails and premier wine selections, with a scenic view of the bay.
-                </p>
-                <div className="w-px h-24 bg-luxury-gold mx-auto my-12 opacity-50"></div>
-                <p className="text-white/60 text-lg font-light tracking-wider uppercase">
-                  Elevated Evenings
-                </p>
-              </div>
-            </section>
 
-            {/* Minimal Hours Section */}
-            <section id="hours" className="bg-black pb-16 md:pb-32 px-6">
-              <div className="max-w-2xl mx-auto">
-                <div className="text-center mb-16">
-                  <span className="text-luxury-gold text-xs tracking-[0.3em] uppercase">Timings</span>
-                  <h2 className="text-white text-4xl mt-4 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>Opening Hours</h2>
-                </div>
 
-                <div className="space-y-12">
-                  <div className="flex flex-col items-center text-center space-y-2">
-                    <span className="text-white text-lg tracking-widest uppercase">Daily</span>
-                    <span className="text-white/60 font-light">5:00 PM – 1:30 AM</span>
-                  </div>
 
-                  <div className="flex flex-col items-center text-center space-y-2">
-                    <span className="text-white text-lg tracking-widest uppercase">Sunday Brunch</span>
-                    <span className="text-white/60 font-light">12:30 PM – 5:00 PM</span>
-                  </div>
-
-                  <div className="pt-12 border-t border-white/10 text-center">
-                    <p className="text-white/40 text-sm tracking-widest leading-loose max-w-lg mx-auto">
-                      AER IS OPEN TO GUESTS AGES 21 AND ABOVE. DRESS CODE IN EFFECT. GENTLEMEN ARE ASKED TO WEAR CLOSED-TOE SHOES AND LONG PANTS.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Minimal Menus Grid */}
-            <section id="menus" className="bg-black pb-16 md:pb-32 px-6">
-              <div className="max-w-6xl mx-auto">
-                <div className="grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
-                  <a href="#yacht" className="group relative bg-black p-16 flex flex-col items-center justify-center text-center hover:bg-white/5 transition-colors duration-500">
-                    <span className="text-luxury-gold text-xs tracking-[0.3em] mb-4 uppercase">Menu 01</span>
-                    <h3 className="text-white text-3xl font-light mb-6 group-hover:text-luxury-gold transition-colors duration-300" style={{ fontFamily: 'Playfair Display, serif' }}>Yacht Club</h3>
-                    <span className="text-white/40 text-xs tracking-widest group-hover:text-white transition-colors duration-300">VIEW MENU</span>
-                  </a>
-
-                  <a href="#gimlet" className="group relative bg-black p-16 flex flex-col items-center justify-center text-center hover:bg-white/5 transition-colors duration-500">
-                    <span className="text-luxury-gold text-xs tracking-[0.3em] mb-4 uppercase">Menu 02</span>
-                    <h3 className="text-white text-3xl font-light mb-6 group-hover:text-luxury-gold transition-colors duration-300" style={{ fontFamily: 'Playfair Display, serif' }}>Gimlet Garden</h3>
-                    <span className="text-white/40 text-xs tracking-widest group-hover:text-white transition-colors duration-300">VIEW MENU</span>
-                  </a>
-                </div>
-              </div>
-            </section>
-
-            {/* Minimal Events Section */}
-            <section id="events" className="bg-black pb-16 md:pb-32 px-6">
-              <div className="max-w-4xl mx-auto text-center">
-                <span className="text-luxury-gold text-xs tracking-[0.3em] uppercase">Happenings</span>
-                <h2 className="text-white text-4xl mt-4 mb-12 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>Sunday Brunch</h2>
-
-                <div className="bg-white/5 p-12 md:p-16 border border-white/10 backdrop-blur-sm">
-                  <p className="text-white/80 text-lg leading-relaxed font-light mb-8 max-w-2xl mx-auto">
-                    Experience Sundays anew with our spirited brunch featuring indulgent cocktails and brunch favourites, complemented by DJ tunes and unrivalled rooftop views of the Arabian Sea.
-                  </p>
-                  <Link to="/booking" className="inline-block text-white text-xs tracking-[0.2em] border-b border-luxury-gold pb-1 hover:text-luxury-gold transition-colors duration-300 uppercase">
-                    Reserve Your Table
-                  </Link>
-                </div>
-              </div>
-            </section>
-
-            {/* Minimal Reservation CTA */}
-            <section className="bg-black pb-16 md:pb-32 px-6">
-              <div className="max-w-xl mx-auto text-center border-y border-white/10 py-16">
-                <p className="text-white text-2xl font-light mb-8" style={{ fontFamily: 'Playfair Display, serif' }}>Make a Reservation</p>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                  <a href="tel:912269828000" className="text-white/60 hover:text-white transition-colors duration-300 tracking-wider">91 (22) 6982 8000</a>
-                  <Link to="/booking" className="bg-white text-black px-8 py-3 text-xs tracking-[0.2em] hover:bg-luxury-gold hover:text-white transition-all duration-300 uppercase">
-                    Book Now
-                  </Link>
-                </div>
-              </div>
-            </section>
-
-            {/* Minimal Dining Options */}
-            <section className="bg-black pb-16 md:pb-32 px-6">
+            {/* 1. Our Spaces */}
+            <section className="bg-black py-20 px-6">
               <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                  <span className="text-luxury-gold text-xs tracking-[0.3em] uppercase">More Dining</span>
-                  <h2 className="text-white text-3xl mt-4 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>Culinary Experiences</h2>
-                </div>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10">
+                <div className="grid md:grid-cols-3 gap-8">
                   {[
-                    {
-                      img: '/sanqi.jpg',
-                      title: 'San:Qi',
-                      desc: 'Pan-Asian culinary tour.'
-                    },
-                    {
-                      img: '/takeaway.jpg',
-                      title: 'Takeaway',
-                      desc: 'House-made sweet delights.'
-                    },
-                    {
-                      img: '/inroom.jpg',
-                      title: 'In-Room Dining',
-                      desc: 'Dine in private comfort.'
-                    },
-                    {
-                      img: '/opus.jpg',
-                      title: 'Opus',
-                      desc: 'Coffee, tea, and wines.'
-                    }
+                    { title: "Rooftop Restaurant", desc: "Open-air dining with curated cocktails and crafted flavors.", cta: "View Dining", link: "/dining" },
+                    { title: "Boutique Rooms", desc: "Modern comfort blended with warm hospitality.", cta: "Explore Accommodations", link: "/accommodations" },
+                    { title: "Events & Celebrations", desc: "Private gatherings, date nights, and special moments.", cta: "See Experiences", link: "/experiences" }
                   ].map((item, idx) => (
-                    <div key={idx} className="group relative bg-black aspect-[3/4] overflow-hidden">
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-700"
-                      />
-                      <div className="absolute inset-0 flex flex-col justify-end p-8">
-                        <h4 className="text-white text-xl font-light mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>{item.title}</h4>
-                        <p className="text-white/60 text-sm font-light mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">{item.desc}</p>
-                        <span className="text-luxury-gold text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Explore</span>
-                      </div>
+                    <div key={idx} className="bg-white/5 border border-white/10 p-10 flex flex-col items-center text-center hover:border-luxury-gold/50 transition-colors duration-500 group">
+                      <h3 className="text-white text-2xl font-light mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>{item.title}</h3>
+                      <p className="text-white/60 font-light mb-8 leading-relaxed">{item.desc}</p>
+                      <Link to={item.link} className="mt-auto text-luxury-gold text-xs tracking-[0.2em] uppercase border-b border-transparent group-hover:border-luxury-gold pb-1 transition-all duration-300">
+                        {item.cta}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* 2. Signature Dining Experience */}
+            <section className="relative py-32 px-6 bg-black overflow-hidden">
+              <div className="absolute inset-0 opacity-40">
+                <img src="/sanqi.jpg" alt="Signature Dining" className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+              <div className="relative z-10 max-w-4xl mx-auto text-center">
+                <h2 className="text-white text-4xl md:text-6xl font-light mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  An Elevated Culinary Experience.
+                </h2>
+                <p className="text-white/80 text-lg md:text-xl font-light mb-10 tracking-wide">
+                  Crafted cocktails. Curated dishes. Golden-hour ambience on a rooftop above Punjab.
+                </p>
+                <Link to="/dining" className="inline-block bg-luxury-gold text-black px-10 py-4 text-xs tracking-[0.2em] uppercase hover:bg-white transition-colors duration-300">
+                  View Menu
+                </Link>
+              </div>
+            </section>
+
+            {/* 3. Gallery Preview */}
+            <section className="bg-black py-20 px-6">
+              <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+                  {[
+                    "/hero-rooftop.jpg",
+                    "/opus.jpg",
+                    "/sanqi.jpg",
+                    "/inroom.jpg",
+                    "/takeaway.jpg",
+                    "/hero-rooftop.jpg"
+                  ].map((img, i) => (
+                    <div key={i} className="aspect-square bg-white/5 overflow-hidden relative group">
+                      <img src={img} alt="Gallery" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500 transform scale-100 group-hover:scale-110 duration-700" />
+                    </div>
+                  ))}
+                </div>
+                <div className="text-center">
+                  <Link to="/gallery" className="text-white text-xs tracking-[0.2em] uppercase border border-white/20 px-8 py-3 hover:bg-white hover:text-black transition-all duration-300">
+                    View Full Gallery
+                  </Link>
+                </div>
+              </div>
+            </section>
+
+            {/* 4. Guest Reviews */}
+            <section className="bg-black py-20 px-6 border-t border-white/5">
+              <div className="max-w-6xl mx-auto">
+                <div className="grid md:grid-cols-3 gap-12">
+                  {[
+                    { text: "Best rooftop ambiance in Punjab.", author: "Tarun S." },
+                    { text: "Perfect for date nights.", author: "Aditi M." },
+                    { text: "Rooms felt premium and cozy.", author: "Rohan K." }
+                  ].map((review, idx) => (
+                    <div key={idx} className="text-center">
+                      <div className="text-luxury-gold text-2xl mb-6">★★★★★</div>
+                      <p className="text-white text-xl font-light italic mb-6 leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                        "{review.text}"
+                      </p>
+                      <span className="text-white/40 text-xs tracking-[0.2em] uppercase">{review.author}</span>
                     </div>
                   ))}
                 </div>
@@ -236,7 +187,10 @@ export default function Overview() {
                   {/* Minimal Logo */}
                   <div className="mb-12">
                     <h2 className="text-2xl tracking-[0.3em] font-light text-white">THE HOLLYWOOD</h2>
-                    <span className="block text-luxury-gold text-xs tracking-[0.4em] mt-2 uppercase">Chandigarh</span>
+                    <span className="block text-luxury-gold text-xs tracking-[0.4em] mt-2 uppercase">Punjab</span>
+                    <p className="text-white/40 text-xs mt-4 font-light">
+                      Morinda Road, Bari Mandauli, Distt Ropar Punjab 140101
+                    </p>
                   </div>
 
                   {/* Minimal Navigation */}

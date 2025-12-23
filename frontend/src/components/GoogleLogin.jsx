@@ -9,32 +9,27 @@ const Login = () => {
 
   // Google login button
 const handleSuccess = async (credentialResponse) => {
-  try {
-    const credential = credentialResponse.credential;
-    const user = jwtDecode(credential);
+  const token = credentialResponse.credential;
+  const user = jwtDecode(token);
 
-    sessionStorage.setItem("googleToken", credential);
-    sessionStorage.setItem("userName", user.given_name);
+  // 1️⃣ Save to sessionStorage FIRST
+  sessionStorage.setItem("googleToken", token);
+  sessionStorage.setItem("userName", user.given_name);
 
-    const res = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/api/auth/google`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ credential }),
-      }
-    );
+  console.log("Stored userName:", sessionStorage.getItem("userName"));
 
-    if (!res.ok) throw new Error("Backend auth failed");
+  // 2️⃣ Send token to backend (wait until it finishes)
+  await fetch("http://localhost:3000/api/auth/google", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token })
+  });
 
-    // ✅ trigger UI update instead of reload
-    setUser(user);
-
-  } catch (e) {
-    console.error("Login flow failed:", e);
-  }
+  // 3️⃣ Reload AFTER everything is done
+  setTimeout(() => {
+    window.location.reload();
+  }, 50);  // tiny delay makes sure sessionStorage is written before reload
 };
-
 
 
   

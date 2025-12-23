@@ -26,11 +26,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          isScrolled || isMenuOpen
-            ? "bg-[#0A0A0C]/95 backdrop-blur-xl shadow-lg py-4"
-            : "bg-gradient-to-b from-black/90 to-transparent py-8"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${isScrolled || isMenuOpen
+          ? "bg-[#0A0A0C]/95 backdrop-blur-xl shadow-lg py-4"
+          : "bg-gradient-to-b from-black/90 to-transparent py-8"
+          }`}
         style={{
           borderBottom:
             isScrolled || isMenuOpen
@@ -50,28 +49,21 @@ export default function Navbar() {
               >
                 <div className="w-6 h-5 relative flex flex-col justify-between">
                   <span
-                    className={`w-full h-0.5 bg-current transform transition-all duration-300 ${
-                      isMenuOpen ? "rotate-45 translate-y-2" : ""
-                    }`}
+                    className={`w-full h-0.5 bg-current transform transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""
+                      }`}
                   />
                   <span
-                    className={`w-full h-0.5 bg-current transition-all duration-300 ${
-                      isMenuOpen ? "opacity-0" : "opacity-100"
-                    }`}
+                    className={`w-full h-0.5 bg-current transition-all duration-300 ${isMenuOpen ? "opacity-0" : "opacity-100"
+                      }`}
                   />
                   <span
-                    className={`w-full h-0.5 bg-current transform transition-all duration-300 ${
-                      isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
-                    }`}
+                    className={`w-full h-0.5 bg-current transform transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""
+                      }`}
                   />
                 </div>
               </button>
               <div className="hidden lg:flex items-center gap-2 text-luxury-ivory/60 text-[10px] tracking-widest font-medium">
                 <span className="text-luxury-gold">EN</span>
-                <span>/</span>
-                <span className="hover:text-luxury-gold transition-colors cursor-pointer">
-                  FR
-                </span>
               </div>
             </div>
 
@@ -84,13 +76,13 @@ export default function Navbar() {
                 <img
                   src="/logo.png"
                   alt="The Hollywood"
-                  className="h-8 md:h-12 w-auto"
+                  className="h-12 md:h-20 w-auto"
                   style={{
                     filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))",
                   }}
                 />
                 <span
-                  className="text-luxury-ivory font-serif text-xl md:text-2xl tracking-wide hidden sm:block"
+                  className="text-luxury-ivory font-serif text-2xl md:text-4xl tracking-wide hidden sm:block"
                   style={{
                     fontFamily: "Playfair Display, serif",
                     fontWeight: 400,
@@ -105,16 +97,11 @@ export default function Navbar() {
 
             {/* Right Side - Contacts & Booking */}
             <div className="flex items-center gap-4 md:gap-8">
-              <Link
-                to="/contact"
-                className="hidden lg:block text-luxury-ivory/80 hover:text-luxury-gold transition-colors duration-300 text-xs tracking-[0.2em] uppercase font-medium"
-              >
-                Contacts
-              </Link>
 
-            <div className="lg:block text-luxury-ivory/80 hover:text-luxury-gold transition-colors duration-300 text-sm tracking-[0.2em] uppercase font-medium">
+
+              <div className="lg:block text-luxury-ivory/80 hover:text-luxury-gold transition-colors duration-300 text-sm tracking-[0.2em] uppercase font-medium">
                 {sessionStorage.getItem("userName")}
-            </div>
+              </div>
 
               {sessionStorage.getItem("userName") === null ? (
                 <div className="hidden lg:block">
@@ -160,23 +147,23 @@ export default function Navbar() {
               { name: "Dining", path: "/dining" },
               { name: "Experiences", path: "/experiences" },
               { name: "Offers", path: "/offers" },
+              { name: "Location", path: "/location" },
+              { name: "Contacts", path: "/contact" },
             ].map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-xs tracking-[0.2em] uppercase font-medium transition-all duration-300 hover:text-luxury-gold relative group ${
-                  location.pathname === link.path
-                    ? "text-luxury-gold"
-                    : "text-luxury-ivory/70"
-                }`}
+                className={`text-xs tracking-[0.2em] uppercase font-medium transition-all duration-300 hover:text-luxury-gold relative group ${location.pathname === link.path
+                  ? "text-luxury-gold"
+                  : "text-luxury-ivory/70"
+                  }`}
               >
                 {link.name}
                 <span
-                  className={`absolute -bottom-2 left-0 w-full h-0.5 bg-luxury-gold transform origin-left transition-transform duration-300 ${
-                    location.pathname === link.path
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
+                  className={`absolute -bottom-2 left-0 w-full h-0.5 bg-luxury-gold transform origin-left transition-transform duration-300 ${location.pathname === link.path
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                    }`}
                 ></span>
               </Link>
             ))}
@@ -186,11 +173,10 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black/95 z-[90] flex items-center justify-center transition-all duration-500 ${
-          isMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/95 z-[90] flex items-center justify-center transition-all duration-500 ${isMenuOpen
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+          }`}
       >
         <div className="flex flex-col items-center gap-8">
           {[
@@ -199,15 +185,16 @@ export default function Navbar() {
             { name: "Dining", path: "/dining" },
             { name: "Experiences", path: "/experiences" },
             { name: "Offers", path: "/offers" },
+            { name: "Location", path: "/location" },
+            { name: "Contacts", path: "/contact" },
           ].map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className={`text-2xl font-serif transition-colors duration-300 ${
-                location.pathname === link.path
-                  ? "text-luxury-gold"
-                  : "text-luxury-ivory hover:text-luxury-gold"
-              }`}
+              className={`text-2xl font-serif transition-colors duration-300 ${location.pathname === link.path
+                ? "text-luxury-gold"
+                : "text-luxury-ivory hover:text-luxury-gold"
+                }`}
             >
               {link.name}
             </Link>

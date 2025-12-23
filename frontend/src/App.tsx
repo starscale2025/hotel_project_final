@@ -7,6 +7,8 @@ import AccommodationsPage from './pages/Accommodations';
 import OffersPage from './pages/Offers';
 import ExperiencesPage from './pages/Experiences';
 import DiningPage from './pages/Dining';
+import LocationPage from './pages/Location';
+import ContactPage from './pages/Contact';
 import Booking from './pages/Booking';
 import ConfirmationPage from './pages/Confirmation';
 import DashboardBookings from './pages/DashboardBookings';
@@ -17,7 +19,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-     <Router>
+    <Router>
       <SmoothScroll />
       <div className="App">
         <Routes>
@@ -30,40 +32,42 @@ function App() {
           <Route path="/offers" element={<OffersPage />} />
           <Route path="/experiences" element={<ExperiencesPage />} />
           <Route path="/dining" element={<DiningPage />} />
+          <Route path="/location" element={<LocationPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/admin/login" element={<AdminLogin />} />
 
           {/* Protected Dashboard Routes */}
-          <Route 
-            path="/dashboard" 
+          <Route
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/dashboard/rooms" 
+          <Route
+            path="/dashboard/rooms"
             element={
               <ProtectedRoute>
                 <DashboardBookings type="rooms" />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/dashboard/tables" 
+          <Route
+            path="/dashboard/tables"
             element={
               <ProtectedRoute>
                 <DashboardBookings type="tables" />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/dashboard/booking-history" 
+          <Route
+            path="/dashboard/booking-history"
             element={
               <ProtectedRoute>
                 <BookingHistory />
               </ProtectedRoute>
-            } 
+            }
           />
 
           {/* 404 */}

@@ -7,25 +7,31 @@ export default function Accommodations() {
   const rooms = [
     {
       id: 1,
-      name: 'Luxury Suite',
-      price: '₹ 45,000',
+      name: 'Luxury Room',
+      price: '₹ 1,800 + GST',
       image: '/inroom.jpg',
       desc: 'Expansive suites with panoramic city views and bespoke amenities.'
     },
     {
       id: 2,
-      name: 'Deluxe Room',
-      price: '₹ 25,000',
+      name: 'Normal Room',
+      price: '₹ 1,500 + GST',
       image: '/sanqi.jpg', // Placeholder
       desc: 'Contemporary elegance meets comfort in our spacious deluxe rooms.'
-    },
-    {
-      id: 3,
-      name: 'Presidential Suite',
-      price: '₹ 1,50,000',
-      image: '/hero-rooftop.jpg', // Placeholder
-      desc: 'The ultimate in luxury, offering unparalleled privacy and service.'
     }
+  ];
+
+  const facilities = [
+    "Room Food service",
+    "Parking",
+    "AC & Air ventilated rooms"
+  ];
+
+  const instructions = [
+    "Booking 24 hours before coming",
+    "Cancellation charges apply",
+    "Drugs not allowed",
+    "Any damage to room & furniture shall be charged"
   ];
 
   return (
@@ -56,7 +62,7 @@ export default function Accommodations() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {rooms.map((room) => (
             <div key={room.id} className="group cursor-pointer">
               <div className="relative overflow-hidden h-64 md:h-80 mb-6">
@@ -77,6 +83,32 @@ export default function Accommodations() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Facilities & Instructions */}
+        <div className="grid md:grid-cols-2 gap-12 bg-gray-50 p-8 md:p-12 rounded-lg">
+          <div>
+            <h3 className="text-2xl font-serif text-taj-dark mb-6">Facilities</h3>
+            <ul className="space-y-4">
+              {facilities.map((facility, idx) => (
+                <li key={idx} className="flex items-center text-taj-gray">
+                  <span className="w-2 h-2 bg-taj-gold rounded-full mr-4"></span>
+                  {facility}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-2xl font-serif text-taj-dark mb-6">Instructions Before Booking</h3>
+            <ul className="space-y-4">
+              {instructions.map((instruction, idx) => (
+                <li key={idx} className="flex items-start text-taj-gray">
+                  <span className="text-taj-gold mr-4 mt-1">⚠</span>
+                  {instruction}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
     </div>

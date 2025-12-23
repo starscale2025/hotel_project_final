@@ -64,6 +64,16 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: false
+}));
+
+// app.options("*", cors());
+
+
 
 
 app.set("view engine", "ejs")

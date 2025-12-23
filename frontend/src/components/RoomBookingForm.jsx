@@ -53,9 +53,9 @@ export default function RoomBookingForm() {
         };
 
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`, {
+            const response = await fetch("http://localhost:3000/api/bookings", {
                 method: "POST",
-                credentials: "omit",
+                // credentials: "include",
                 headers: {
                     "Content-Type": "application/json",
                 },

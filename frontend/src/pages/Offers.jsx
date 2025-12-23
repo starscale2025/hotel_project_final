@@ -3,11 +3,7 @@ import Navbar from '../components/Navbar';
 
 export default function Offers() {
   const offers = [
-    {
-      title: 'Suite Surprise',
-      desc: 'Enjoy 20% savings on our best available rates when you book a suite.',
-      validity: 'Valid until Dec 31, 2025'
-    },
+
     {
       title: 'Member Exclusive',
       desc: 'Join our loyalty program and enjoy exclusive benefits and rates.',
@@ -40,9 +36,9 @@ export default function Offers() {
 
       {/* Content */}
       <section className="py-12 md:py-16 max-w-7xl mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {offers.map((offer, idx) => (
-            <div key={idx} className="border border-gray-200 p-6 md:p-8 text-center hover:border-taj-gold transition-colors duration-300 group">
+            <div key={idx} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] border border-gray-200 p-6 md:p-8 text-center hover:border-taj-gold transition-colors duration-300 group">
               <h3 className="text-2xl font-serif text-taj-dark mb-4 group-hover:text-taj-gold transition-colors">{offer.title}</h3>
               <p className="text-taj-gray mb-6 leading-relaxed text-sm md:text-base">{offer.desc}</p>
               <p className="text-xs tracking-widest text-taj-gold mb-8 uppercase">{offer.validity}</p>

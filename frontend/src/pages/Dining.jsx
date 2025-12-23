@@ -12,44 +12,34 @@ export default function DiningPage() {
 
   const restaurants = [
     {
-      id: 'aer',
-      name: 'AER Rooftop Bar',
+      id: 'rooftop',
+      name: 'Rooftop Cafe & Bar',
       category: 'Rooftop Bar',
       image: '/hero-rooftop.jpg',
-      description: "Chandigarh's chic open-air rooftop bar offers innovative cocktails and premier wine selections, with a scenic view of the bay.",
-      hours: 'Daily 5:00 PM – 1:30 AM',
+      description: "Punjab's chic open-air rooftop bar offers innovative cocktails and premier wine selections.",
+      hours: 'Daily 9:00 AM – 11:00 PM',
       cuisine: 'Bar & Lounge',
       priceRange: '₹₹₹'
     },
     {
-      id: 'sanqi',
-      name: 'San:Qi',
-      category: 'Asian Fusion',
-      image: '/sanqi.jpg',
-      description: 'From tandoor to woks, sushi bar to Thai cookery, our dramatic dining room takes you on a pan-Asian culinary tour.',
-      hours: 'Daily 12:00 PM – 11:30 PM',
-      cuisine: 'Pan-Asian',
-      priceRange: '₹₹₹₹'
-    },
-    {
-      id: 'opus',
-      name: 'Opus Restaurant',
+      id: 'restaurant',
+      name: 'The Hollywood Restaurant',
       category: 'Fine Dining',
-      image: '/opus.jpg',
-      description: 'Immerse yourself in a culinary experience that spans continents with a selection of coffees, teas, wines and cocktails.',
-      hours: 'Daily 6:30 AM – 11:00 PM',
-      cuisine: 'International',
-      priceRange: '₹₹₹₹'
+      image: '/sanqi.jpg',
+      description: 'Serving authentic Indian, Chinese & Continental cuisine.',
+      hours: 'Daily 9:00 AM – 11:00 PM',
+      cuisine: 'Indian, Chinese, Continental',
+      priceRange: '₹₹₹'
     },
     {
-      id: 'poolside',
-      name: 'Poolside Dining',
-      category: 'Casual Dining',
-      image: '/inroom.jpg',
-      description: 'Enjoy light bites and refreshing beverages by the pool in a relaxed, luxurious setting.',
-      hours: 'Daily 7:00 AM – 7:00 PM',
-      cuisine: 'Mediterranean',
-      priceRange: '₹₹₹'
+      id: 'banquet',
+      name: 'Banquet & Party Hall',
+      category: 'Events',
+      image: '/opus.jpg',
+      description: 'Perfect venue for your celebrations and gatherings.',
+      hours: 'Available on Booking',
+      cuisine: 'Catering',
+      priceRange: 'On Request'
     }
   ];
 
@@ -270,6 +260,9 @@ export default function DiningPage() {
               <span className="text-taj-gold font-serif text-2xl">TH</span>
             </div>
             <h2 className="text-2xl font-serif tracking-[0.2em] text-taj-gold">THE HOLLYWOOD</h2>
+            <p className="text-white/40 text-xs mt-4 font-light">
+              Morinda Road, Bari Mandauli, Distt Ropar Punjab 140101
+            </p>
           </div>
         </div>
       </footer>
