@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const { OAuth2Client } = require("google-auth-library");
@@ -16,58 +15,53 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-
-
 const allowedOrigins = [
   process.env.FRONTEND_URL || "http://localhost:5173",
   "https://hotel-project-final-murex.vercel.app",
 ];
 
-// CORS configuration - must be before other middleware
-const corsOptions = {
-  origin: function (origin, callback) {
-    // For cross-origin requests, origin will be present
-    // For same-origin requests (no origin header), allow them
-    if (!origin) {
-      return callback(null, true);
-    }
-    
-    // Check if origin is in allowed list
-    if (allowedOrigins.includes(origin)) {
-      // CRITICAL: Return the origin string (not true) when credentials: true
-      // This ensures Access-Control-Allow-Credentials header is set
-      callback(null, origin);
-    } else {
-      // Log for debugging
-      console.log('CORS blocked origin:', origin);
-      console.log('Allowed origins:', allowedOrigins);
-      callback(new Error(`Origin ${origin} not allowed by CORS`));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-  exposedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 200
-};
-
-// Apply CORS middleware - this handles both preflight and actual requests
-app.use(cors(corsOptions));
-
-// Explicit OPTIONS handler for all routes to ensure preflight requests work
-app.options('*', (req, res) => {
+// Manual CORS middleware - MUST be FIRST, before ANY other middleware
+app.use((req, res, next) => {
   const origin = req.headers.origin;
   
+  // Log all requests for debugging
+  console.log('Request:', req.method, req.path, 'Origin:', origin);
+  console.log('Allowed origins:', allowedOrigins);
+  
+  // Check if origin is allowed
   if (origin && allowedOrigins.includes(origin)) {
+    // Set CORS headers for allowed origins
+    // Use both setHeader and header to ensure compatibility
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    res.setHeader('Access-Control-Expose-Headers', 'Content-Type, Authorization');
+    
+    // Also set using Express header() method
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
-    res.header('Access-Control-Max-Age', '86400'); // 24 hours
-    return res.status(200).end();
+    
+    // Handle preflight OPTIONS requests
+    if (req.method === 'OPTIONS') {
+      res.setHeader('Access-Control-Max-Age', '86400'); // 24 hours
+      res.header('Access-Control-Max-Age', '86400');
+      console.log('Preflight OPTIONS request handled for origin:', origin);
+      console.log('Response headers:', res.getHeaders());
+      return res.status(200).end();
+    }
+    
+    console.log('CORS headers set for origin:', origin);
+    console.log('Response headers:', res.getHeaders());
+  } else if (origin) {
+    // Log blocked origins for debugging
+    console.log('CORS blocked origin:', origin);
+    console.log('Origin in allowed list?', allowedOrigins.includes(origin));
   }
   
-  res.status(403).end();
+  next();
 });
 
 
