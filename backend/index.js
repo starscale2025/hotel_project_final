@@ -23,31 +23,52 @@ const allowedOrigins = [
   "https://hotel-project-final-murex.vercel.app",
 ];
 
-// CORS configuration with proper origin function for credentials
-app.use(cors({
+// CORS configuration - must be before other middleware
+const corsOptions = {
   origin: function (origin, callback) {
-    // For requests with no origin (like mobile apps, Postman, or same-origin requests)
-    // Allow them but don't set Access-Control-Allow-Credentials
+    // For cross-origin requests, origin will be present
+    // For same-origin requests (no origin header), allow them
     if (!origin) {
       return callback(null, true);
     }
     
     // Check if origin is in allowed list
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      // Return the origin string (required when credentials: true)
+    if (allowedOrigins.includes(origin)) {
+      // CRITICAL: Return the origin string (not true) when credentials: true
+      // This ensures Access-Control-Allow-Credentials header is set
       callback(null, origin);
     } else {
       // Log for debugging
       console.log('CORS blocked origin:', origin);
-      callback(new Error('Not allowed by CORS'));
+      console.log('Allowed origins:', allowedOrigins);
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
     }
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   exposedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
-}));
+  optionsSuccessStatus: 200
+};
+
+// Apply CORS middleware - this handles both preflight and actual requests
+app.use(cors(corsOptions));
+
+// Explicit OPTIONS handler for all routes to ensure preflight requests work
+app.options('*', (req, res) => {
+  const origin = req.headers.origin;
+  
+  if (origin && allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    res.header('Access-Control-Max-Age', '86400'); // 24 hours
+    return res.status(200).end();
+  }
+  
+  res.status(403).end();
+});
 
 
 
@@ -206,4 +227,16 @@ app.post("/api/table-booking", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Test endpoint to verify CORS
+app.get('/api/test-cors', (req, res) => {
+  res.json({ 
+    message: 'CORS test successful',
+    origin: req.headers.origin,
+    allowedOrigins: allowedOrigins
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log('Allowed origins:', allowedOrigins);
+});
