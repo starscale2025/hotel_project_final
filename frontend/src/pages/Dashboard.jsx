@@ -22,6 +22,18 @@ const Dashboard = () => {
         .catch(err => console.error(err));
     }, []);
 
+    const formatDate = (iso) => {
+  if (!iso) return "-";
+  return new Date(iso).toLocaleString("en-IN", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true
+  });
+};
+    
     // Fetch tables
     useEffect(() => {
         const token = localStorage.getItem("adminToken");
@@ -80,12 +92,16 @@ const Dashboard = () => {
                 <div className="bg--300 w-full p-3">
                     <h1 className='text-xl mb-6 text-luxury-gold'>Rooms Booked for Today</h1>
                     <div className='flex flex-col gap-4'>
-                        {todaysRooms.map((e) => (
+                        {todaysRooms.filter(e => e.status === "confirmed").map((e) => (
                             <div key={e._id} className='w-full flex justify-between p-3 border-2 border-amber-50 rounded-md'>
-                                <p>Room No</p>
+                                {/* <p>Room No</p> */}
+                                {/* <p>{e._id}</p> */}
                                 <p>{e.firstName}</p>
                                 <p>{e.phone}</p>
-                                <p>{e.checkInTime}</p>
+                                <div>
+                                    <p><strong>In: </strong>{formatDate(e.checkInDate)}</p>
+                                    <p><strong>Out:</strong> {formatDate(e.checkOutDate)}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -95,12 +111,12 @@ const Dashboard = () => {
                 <div className=" bg--500 w-full p-3">
                     <h1 className='text-xl mb-6 text-luxury-gold'>Tables Booked for Today</h1>
                     <div className='flex flex-col gap-4'>
-                        {todaysTables.map((e) => (
+                        {todaysTables.filter(e => e.status === "confirmed").map((e) => (
                             <div key={e._id} className='w-full flex justify-between p-3 border-2 border-amber-50 rounded-md'>
                                 <p>Table No</p>
                                 <p>{e.firstName}</p>
                                 <p>{e.phone}</p>
-                                <p>{e.time}</p>
+                                <p>{formatDate(e.time)}</p>
                             </div>
                         ))}
                     </div>
