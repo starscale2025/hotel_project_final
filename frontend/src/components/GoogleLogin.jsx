@@ -19,7 +19,8 @@ const handleSuccess = async (credentialResponse) => {
   console.log("Stored userName:", sessionStorage.getItem("userName"));
 
   // 2️⃣ Send token to backend (wait until it finishes)
-  await fetch("http://localhost:3000/api/auth/google", {
+  // await fetch("http://localhost:3000/api/auth/google", {
+  await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/google`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token })

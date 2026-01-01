@@ -30,7 +30,7 @@ export default function TableBookingForm() {
             // Note: Adjust endpoint if needed for table bookings
             const token = localStorage.getItem("adminToken"); // or sessionStorage if you use googleToken
 
-const response = await fetch("http://localhost:3000/api/table-booking", {
+const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/table-booking`, {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
